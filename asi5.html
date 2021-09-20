@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Current weather</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 100%;
+	background-color: #aaa;
+}
+main {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	height: 600px;
+	margin: auto;
+	border: solid 1px black;
+	text-align: center;
+	background-image: url("montreal.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-bottom: 40px;
+	box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+}
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	color: white;
+	height: 70px;
+}
+header h1 {
+	margin: 0;
+	padding: 0;
+}
+section h2 {
+	font-size: 1.2rem;
+	margin-top: 60px;
+	color: white;
+	text-shadow: 3px 3px 5px rgba(0,0,0,.5);
+}
+section div {
+	position: relative;
+	top: 50px;
+	width: 120px;
+	height: 120px;
+	border: solid 1px #ccc;
+	margin: auto;
+	background-color: rgba(0,0,0,.2);
+	box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+}
+.icon {
+	margin:0;
+	padding: 0;
+	width: 100%;
+}
+.temp {
+	position: relative;
+	top: 30px;
+	background-color: rgba(0,0,0,.15);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	Font-family: arial;
+	font-weight: bold;
+	font-size: 4rem;
+}
+.temp span {
+	margin-right: -10px;
+}
+footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background-color: black;
+	color: white;
+	padding: 10px;
+}
+footer div {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: 49%;
+	margin: auto;
+	font-family: arial;
+	font-size: .8rem;
+}
+</style>
+</head>
+<body>
+<main>
+	<header> </header>
+	<section>
+		<div><img class="icon" /></div>
+		<h2> </h2>
+		<div class="temp"> </div>
+	</section>
+	<footer> </footer>
+</main>
+<script type="text/javascript">
+$(document).ready(function() {
+	$.getJSON("http://api.openweathermap.org/data/2.5/weather?q=montreal,ca&units=metric&APPID=c40b9d48e1ae53a86e25a3382957f4cf", function(data) {
+		let icon = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+		$("header").html('<h1>' + data.name + '</h1><br />');
+		$("footer").append('<div><span>Long.: ' + data.coord.lon + '</span><span>Lat.: ' + data.coord.lat + '</span></div>');
+		$(".icon").attr("src", icon);
+		$("h2").append(data.weather[0].description);
+		$(".temp").append(Math.floor(data.main.temp) + '<span>&deg;</span>');
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Current weather</title>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<style type="text/css">
+	
+	header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: orange;
+	color: white;
+	height: 70px;
+}
+main {
+	position: relative;
+	width: 100%;
+	max-width: ;
+	height: 640px;
+	margin: auto;
+	border: solid 1px black;
+	text-align: center;
+	background-image: url("singh.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-bottom: 40px;
+	box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+}
+section h2 {
+	font-size: 1.2rem;
+	margin-top: 60px;
+	color: white;
+	text-shadow: 3px 3px 5px rgba(0,0,0,.5);
+}
+section h3 {
+	font-size: 1.2rem;
+	margin-top: 100px;
+	color: white;
+	text-shadow: 3px 3px 5px rgba(0,0,0,.5);
+}
+section h4 {
+	font-size: 1.2rem;
+	margin-top: 110px;
+	color: white;
+	text-shadow: 3px 3px 5px rgba(0,0,0,.5);
+}
+footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background-color: orange;
+	color: white;
+	padding: 10px;
+}
+</style>
+<body>
+<main>
+	<header> </header>
+	<section>
+		<div><img class="icon" /></div>
+		<h2> </h2>
+		<h3></h3>
+		<h4></h4>
+		<div class="temp"> </div>
+	</section>
+	<footer> </footer>
+</main>
+<script type="text/javascript">
+$(document).ready(function() {
+	$.getJSON("assignment4.json", function(data) {
+		$("header").html('<p><b>City:</b><br />' + data.city + '</p>');
+		$("h2").append('<p><b>Region:</b><br /> ' + data.region + '</p>')
+		$("h3").append('<p><b>Country:</b><br /> ' + data.country + '</p>')
+		$("h4").append('<p><b>languages:</b><br /> ' + data.languages + '</p>')
+		$("footer").append('<p><b>Timezone:</b><br /> ' + data.timezone + '</p>')
+	});
+});
+</script>
+</body>
+</html>
