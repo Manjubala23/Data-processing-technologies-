@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Current weather</title>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+
+
+<style type="text/css">
+	
+iframe{
+		width: 80%;
+		height: 360px;
+		margin-top: 50px;
+		margin-left: 100px;
+		color: blue;
+
+}
+
+
+section h2 {
+	font-size: 1.2rem;
+	color: black;
+	text-shadow: 3px 3px 5px rgba(0,0,0,.5);
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	color: black;
+}
+
+main {
+	position: relative;
+	width: 100%;
+	max-width: ;
+	margin: auto;
+	border: solid 1px black;
+	text-align: center;
+	padding-bottom:;
+	box-shadow: 5px 5px 15px rgba(0,0,0,.5);
+}
+
+
+
+</style>
+<body>
+
+
+<main> 
+	<header> </header>
+	<section>
+		<div><img class="icon" /></div>
+		<h2> </h2>
+		<h3></h3>
+		<h4></h4>
+		<div class="temp"> </div>
+	</section>
+	<footer> </footer>
+</main>
+
+
+
+<div class="myMap">
+	<iframe src="https://mapquest.com/embed?center=45.54986,-73.62714&zoom=14&maptype=map"></iframe>
+</div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() { 
+
+	$.getJSON("http://api.openweathermap.org/data/2.5/weather?q=montreal,ca&units=metric&APPID=c40b9d48e1ae53a86e25a3382957f4cf", function(data) { 
+
+		let icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+
+		$("h2").html('<p><b>City:</b><br />' + data.name + '</p>');
+		$("h2").append('<p><b>Overcast:</b><br /><img  src="' + icon + '" />');
+				$("h2").append('<p><b>Base:</b><br /> ' + data.base + '</p>')
+
+		$("footer").append('<p><b>Timezone:</b><br /> ' + data.timezone + '</p>')
+
+
+
+	});
+
+});
+</script>
+
+</body>
+</html>
